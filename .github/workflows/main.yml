@@ -18,7 +18,8 @@ jobs:
         uses: FedericoCarboni/setup-ffmpeg@v3
         id: setup-ffmpeg
         with:
-          ffmpeg-version: release  # or specify a version like "6.1.0"
+          ffmpeg-version: 6.1.0
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up Python
         uses: actions/setup-python@v5
