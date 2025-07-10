@@ -19,6 +19,8 @@ jobs:
           python-version: '3.x'
       - name: Install transkun
         run: pip3 install transkun
+      - name: Install audioop-lts
+        run: pip3 install audioop-lts
       - name: Run transkun
         run: transkun ${{ github.event.inputs.input_path }} output.mid
       - name: Upload output.mid
