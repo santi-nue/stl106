@@ -1,0 +1,28 @@
+name: Transkun Transcription (Manual)
+
+on:
+  workflow_dispatch:
+    inputs:
+      input_path:
+        description: 'Path to input mp3 file in the repo'
+        required: true
+        default: 'input.mp3'
+
+jobs:
+  transcribe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Install transkun
+        run: pip3 install transkun
+      - name: Run transkun
+        run: transkun ${{ github.event.inputs.input_path }} output.mid
+      - name: Upload output.mid
+        uses: actions/upload-artifact@v4
+        with:
+          name: output-midi
+          path: output.mid
